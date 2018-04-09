@@ -12,8 +12,16 @@ config_file="resume.json"
 
 Sed_keyword() {
     keyword="$1" 
-    read -p "$keyword:" value
-    sed -i "s/$keyword/$value/g" $config_file 
+    while :
+    do
+        read -p "$keyword:" value
+            if [ -z "$value" ] ;then
+                echo "Sorry you input the null value,please input again!"
+             continue
+            fi
+        sed -i "s/$keyword/$value/g" $config_file
+        break
+    done
 }
 
 Parameter_judge() {
